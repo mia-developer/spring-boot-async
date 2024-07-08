@@ -12,7 +12,7 @@ import org.springframework.security.concurrent.DelegatingSecurityContextExecutor
 public class ApplicationConfig {
 
 	@Bean
-	public ThreadPoolTaskExecutor threadPoolTaskExecutor(
+	public Executor threadPoolTaskExecutor(
 		 @Value("${server.task-executor.thread-pool-size.core}") final Integer corePoolSize,
 		 @Value("${server.task-executor.thread-pool-size.max}") final Integer maxPoolSize,
 		 @Value("${server.task-executor.await-termination-seconds}")
@@ -26,7 +26,7 @@ public class ApplicationConfig {
 		threadPoolTaskExecutor.setAwaitTerminationSeconds(awaitTerminationSeconds);
 		threadPoolTaskExecutor.initialize();
 
-		return threadPoolTaskExecutor;
+		return new DelegatingSecurityContextExecutor(threadPoolTaskExecutor);
 	}
 
 	@Bean

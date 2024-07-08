@@ -13,8 +13,13 @@ public class SampleController {
 
 	private final SampleService service;
 
-	@GetMapping
-	public void get() {
-		service.execute();
+	@GetMapping("/sync")
+	public void sync() {
+		service.sync();
+	}
+
+	@GetMapping("/async")
+	public void async() {
+		service.async();
 	}
 }

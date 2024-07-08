@@ -15,7 +15,11 @@ public class SampleService {
 
 	private final Executor taskExecutor;
 
-	public void execute() {
+	public void sync() {
+		this.logging();
+	}
+
+	public void async() {
 		CompletableFuture.runAsync(this::logging, taskExecutor);
 	}
 
