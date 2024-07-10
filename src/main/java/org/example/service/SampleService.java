@@ -29,7 +29,7 @@ public class SampleService {
 				log.info(String.valueOf(i));
 				sleep(1);
 			}
-		} catch (InterruptedException e){
+		} catch (InterruptedException ignored){
 
 		}
 	}
